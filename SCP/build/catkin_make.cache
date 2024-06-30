@@ -1,0 +1,2 @@
+global_map:grid_searcher:nav:optimizer
+-DCMAKE_BUILD_TYPE=Debug -DCATKIN_DEVEL_PREFIX=/home/djh/ros_example/SCP/devel -DCMAKE_INSTALL_PREFIX=/home/djh/ros_example/SCP/install -G Unix Makefiles

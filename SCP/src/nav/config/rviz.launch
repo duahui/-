@@ -1,0 +1,6 @@
+
+<launch>   
+                                <!-- rviz pkg -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find nav)/config/kinoastar.rviz"/>
+
+</launch>

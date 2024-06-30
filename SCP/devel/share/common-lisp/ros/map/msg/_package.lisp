@@ -1,0 +1,13 @@
+(cl:defpackage map-msg
+  (:use )
+  (:export
+   "<DYNAMICOBSTACLE>"
+   "DYNAMICOBSTACLE"
+   "<DYNAMICOBSTACLES>"
+   "DYNAMICOBSTACLES"
+   "<DYNAMICTRAJECTORYPOINT>"
+   "DYNAMICTRAJECTORYPOINT"
+   "<OBSTACLES>"
+   "OBSTACLES"
+  ))
+

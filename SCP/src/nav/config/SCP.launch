@@ -1,0 +1,112 @@
+<launch>
+
+    <arg name = "max_speed_forward" value = "2.0" />
+    <arg name = "max_speed_reverse" value = "0.0" />
+    <arg name = "max_acc_forward" value = "3.0" />
+    <arg name = "max_acc_reverse" value = "-3.0" />
+
+                        <!-- global data -->
+    <!-- map data -->
+    <param name="/has_map" value="false" type="bool" />
+    <param name="/map/x_size" value="40.0" type="double" />
+    <param name="/map/y_size" value="40.0" type="double" />
+    <param name="/map/z_size" value="10.0" type="double" />
+    <param name="/map/dim_flag" value="true" type="bool" />    <!--true是二维 -->
+
+    <!-- start end data   有些需要从rviz发布的-->
+    <param name="/map/start_pt_x" value="0.0" type="double" />
+    <param name="/map/start_pt_y" value="0.0" type="double" />
+    <param name="/map/start_pt_z" value="0.0" type="double" />
+
+    <param name="/map/start_vel_x" value="0.0" type="double" />
+    <param name="/map/start_vel_y" value="0.0" type="double" />
+    <param name="/map/start_vel_z" value="0.0" type="double" />
+
+    <param name="/map/start_acc_x" value="0.0" type="double" />
+    <param name="/map/start_acc_y" value="0.0" type="double" />
+    <param name="/map/start_acc_z" value="0.0" type="double" />
+
+    <param name="/map/end_vel_x" value="0.0" type="double" />
+    <param name="/map/end_vel_y" value="0.0" type="double" />
+    <param name="/map/end_vel_z" value="0.0" type="double" /> 
+
+    <param name="/nav/use_snap_closed" value="true" type="bool" />                            
+    <param name="/nav/use_scp_nlp" value="true" type="bool" />  
+
+                         <!-- map pkg -->   
+            <!--launch-prefix="xterm -e gdb -ex run _-args" args="param1 param2" -->
+        <!-- xterm -e 是新开一个xterm窗口  -ex run -ex后接运行gdb后自动执行的指令 param1 和param2是传给可执行程序-->
+    <node pkg="global_map" type="map_generator" name="map_generator" output="screen" >
+
+        <!-- ob -->
+        <param name="map/obs_num" value="0" type="int" />
+        <param name="map/resoultion" value="0.1" type="double" />
+        <param name="ObstacleShape/lower_wid" value="0.3" type="double" />
+        <param name="ObstacleShape/upper_wid" value="0.8" type="double" />
+        <param name="ObstacleShape/lower_hei" value="3.0" type="double" />
+
+        <param name="init_state_x" value="0.0" type="double" />
+        <param name="init_state_y" value="0.0" type="double" />
+
+        <param name="sensing/rate" value="1.0" type="double" />  <!--地图发布频率-->
+
+        <!-- current -->
+        <param name = "vortexes_num" value = "1" type = "int" />
+        <param name = "radius" value = "6" type = "double" />
+    
+    </node>
+
+                                <!-- grid_searcher pkg -->
+    <node pkg="nav" type="nav" name="nav" output="screen" launch-prefix = "xterm -e gdb">
+
+        <!-- searcher_param -->
+        <param name = "resoultion" value="0.2" type="double" />
+        <param name = "searcher_flag" value="2" type="int" />   <!--1 是kino_searcher -->
+        <param name = "use_car_search" value="true" type="bool" />   <!--1 是kino_searcher -->
+        <param name = "vis_kino_interval" value = "0.6" type = "double" />
+        <param name = "sam_kino_interval" value = "0.2" type = "double" />
+
+        <!-- kino_astar param -->
+        <param name="search/max_tau" value="0.6" type="double" />
+        <param name="search/init_max_tau" value="0.8" type="double" />
+        <param name="search/max_vel" value="$(arg max_speed_forward)" type="double" />
+        <param name="search/max_acc" value="$(arg max_acc_forward)" type="double" />
+        <param name="search/lambda_heu" value="5.0" type="double" />
+        <param name="search/check_num" value="10" type="int" />
+
+        <!-- optimize param -->
+        <param name="max_Seg" value= "100" type="int" />
+        <param name="vis_traj_width" value= "0.02" type="double" />
+
+                    <!-- state bound -->
+        <param name="opt/max_speed_forward" value= "$(arg max_speed_forward)" type="double" />
+        <param name="opt/max_speed_reverse" value= "$(arg max_speed_reverse)" type="double" />
+        <param name="opt/max_acc_forward" value= "$(arg max_acc_forward)" type="double" />
+        <param name="opt/max_acc_reverse" value= "$(arg max_acc_reverse)" type="double" />
+        <param name="opt/max_jerk" value= "4.0" type="double" />
+        <param name="opt/min_time_scal" value= "0.5" type="double" />
+        <param name="opt/max_time_scal" value= "1.8" type="double" />
+        <param name="opt/max_steer_angle" value= "8.20304748437" type="double" />
+        <param name="opt/steer_ratio" value= "16.0" type="double" />
+        <param name="opt/max_steer_rate" value= "8.55211" type="double" />
+        <param name="opt/delta_t" value= "0.2" type="double" />
+                    <!-- object weight -->
+        <param name="opt/w_steer" value= "2.0" type="double" />
+        <param name="opt/w_a" value= "1.0" type="double" />        
+        <param name="opt/w_steer_rate" value= "2.0" type="double" />
+        <param name="opt/w_a_rate" value= "2.5" type="double" />
+        
+        <param name="opt/w_t" value= "10.0" type="double" />
+        <param name="opt/w_current" value= "2.5" type="double" />
+        
+        <param name="opt/weel_base" value= "2.8448" type="double" />
+
+        <!-- snap param -->
+        <param name="snap/dev_order" value= "4" type="int" />
+
+        <!-- nlp param -->
+
+    </node>   
+
+</launch>
+ 

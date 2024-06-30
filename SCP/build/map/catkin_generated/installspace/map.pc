@@ -1,0 +1,8 @@
+prefix=/home/djh/ros_example/SCP/install
+
+Name: map
+Description: Description of map
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: roscpp std_msgs message_runtime

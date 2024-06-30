@@ -1,0 +1,8 @@
+prefix=/home/djh/ros_example/SCP/install
+
+Name: grid_searcher
+Description: Description of grid_searcher
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lgrid_searcher
+Requires: roscpp sensor_msgs std_msgs visualization_msgs geometry_msgs global_map

@@ -1,0 +1,8 @@
+prefix=/home/djh/ros_example/SCP/devel
+
+Name: optimizer
+Description: Description of optimizer
+Version: 0.0.0
+Cflags: -I/home/djh/ros_example/SCP/src/optimizer/include
+Libs: -L${prefix}/lib -loptimizer
+Requires: roscpp std_msgs visualization_msgs global_map
