@@ -1,9 +1,9 @@
 一、global_map
-    1、生成障碍物信息及地图信息
-    2、生成海浪信息
-二、全局规划 -- grid_searcher包
-    1、apollo里的无人车 Hybrid A*版本
-    2、Fast-planner 里的无人机 Hybrid A*版本
+    1、生成障碍物信息及地图信息  
+    2、生成海浪信息  
+二、全局规划 -- grid_searcher包  
+    1、apollo里的无人车 Hybrid A*版本  
+    2、Fast-planner 里的无人机 Hybrid A*版本  
     3、searcher_manager用于管理各方法类，方便扩展
 三、轨迹优化-- optimizer包
     1、无人机版 minmium——snap优化
