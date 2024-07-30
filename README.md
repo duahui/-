@@ -14,7 +14,10 @@
     4、opt-manager管理各类方法，方便扩展。  
       
 四、总问题调用-- nav包  
-    各模块包生成类，方便对各模块进行协作   
+    各模块包生成类，方便对各模块进行协作  
+
+五、gazebo仿真-- carsim包  
+    接受car信息，进行实时局部规划和控制
     
 
 [https://github.com/duahui/-/assets/75663164/9e6de508-bc1c-4cd8-9a52-35311526c268](https://github.com/duahui/-/assets/75663164/34e1b3bd-9352-43ca-9553-178481752ae4)
